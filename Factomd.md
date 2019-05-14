@@ -31,7 +31,7 @@ Networking is started at `engine/NetStart.go`. NetStart handles a lot of things,
 * checks if RPC credentials are required
 * runs `CheckChainHeads` 
 * runs `FixChainHeads`
-* starts pprof with `StartProfiler` (see  ["Operations"](/operations) chapter)
+* starts pprof with `StartProfiler` (see  ["Operations"](/hackingfactom/operations) chapter)
 * sets log levels
 
 > Many of the things that control the flow of start up and set important pieces of state are found in [`engine/factomParams.go`](https://github.com/FactomProject/factomd/blob/master/engine/factomParams.go). Stop and take a brief look at the `init()` function and the defaults. 
@@ -51,7 +51,7 @@ Then, a few hundred lines later,
 
 If we are running a single full mainnet node, we will call `makeServer` once and supply it with a copy of the state object that we have been building up. It creates a new [FactomNode](https://github.com/FactomProject/factomd/blob/5f787fc9bf067dac6df2c36803e03e2a1a3b3186/engine/NetStart.go#L37) struct and returns it. If we are running a simulated network, additional Factom servers are started at this point and given skeleton Identities. Then, the P2P network is started.
 
-The type of network we are on is determined (main, test, local, custom). The `SeedURL` is determined here based on the type of network we are on--the role of `SeedURL` will be discussed in the ["Peer to Peer Network"](/peer-to-peer) chapter. The most important module for peer-to-peer networking in Factom is started here, the `p2p.Controller`, also discussed in the ["Peer to Peer Network"](/peer-to-peer) chapter.
+The type of network we are on is determined (main, test, local, custom). The `SeedURL` is determined here based on the type of network we are on--the role of `SeedURL` will be discussed in the ["Peer to Peer Network"](/hackingfactom/peer-to-peer) chapter. The most important module for peer-to-peer networking in Factom is started here, the `p2p.Controller`, also discussed in the ["Peer to Peer Network"](/hackingfactom/peer-to-peer) chapter.
 
 For a simulated network, the pattern of network is set here. This includes network options like "circle" and "tree"--the deafult is "alot+". These different configurations of how nodes are shaped and connected helps evaluate performance of the gossip protocol. The `arborjs.org/halfviz` visualization text of the network is generated here, you can copy it into the arborjs page to visualize the network pattern. Here is an example of what halfviz does:
 
@@ -60,7 +60,7 @@ For a simulated network, the pattern of network is set here. This includes netwo
 (It is possible to have factomd keep a journal of all messages it receives, and replay those messages, if the paramters are set--by default this is disabled. But if it is enabled, factomd will make note of that fact at this point.)
 {: .fw-300}
 
-Prometheus (see ["Operations"](/operations) chapter) is started and made available on port `9876`. The control panel server is started. The web server API is started (see  ["Operations"](/operations) chapter). And finally the simulator listener is started for listening on stdin.
+Prometheus (see ["Operations"](/hackingfactom/operations) chapter) is started and made available on port `9876`. The control panel server is started. The web server API is started (see  ["Operations"](/hackingfactom/operations) chapter). And finally the simulator listener is started for listening on stdin.
 
 The servers that have been made are started in the `startServers` function call.
 

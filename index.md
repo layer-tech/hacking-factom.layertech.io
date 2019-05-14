@@ -22,7 +22,7 @@ You can jump right in and start reading. Also, be sure to fork a copy of [`facto
 
 ### Contributing
 
-Thanks for considering contributing to this guide! Please visit the [About](/about) page for nformation on ways to contribute.
+Thanks for considering contributing to this guide! Please visit the [About](/hackingfactom/about) page for nformation on ways to contribute.
 
 #### What if things get outdated?
 
